@@ -31,4 +31,15 @@ public class GlobalHandlerException {
         );
         return errorResponseDTO;
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponseDTO handleGeneralException(Exception ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                ex.getMessage(),
+                "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+                java.time.LocalDateTime.now());
+    return errorResponseDTO;
+    }
+
 }
