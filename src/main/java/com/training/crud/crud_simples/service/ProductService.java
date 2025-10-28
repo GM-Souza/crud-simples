@@ -9,6 +9,7 @@ import com.training.crud.crud_simples.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -47,6 +48,10 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado com o ID: " + id));
 
         return ProductResponseDTO.fromModel(productModel);
+    }
+
+    public List<ProductResponseDTO> listAllProducts() {
+        return productRepository.findAll().stream().map(ProductResponseDTO::fromModel).toList();
     }
 
     public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productDTO) {

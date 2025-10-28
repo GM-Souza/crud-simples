@@ -23,10 +23,16 @@ public class ProductController {
        return ResponseEntity.ok(newProduct);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
         public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id) {
             ProductResponseDTO product = productService.getProductById(id);
             return ResponseEntity.ok(product);
+    }
+
+    @GetMapping
+        public ResponseEntity<java.util.List<ProductResponseDTO>> listAllProducts() {
+            java.util.List<ProductResponseDTO> products = productService.listAllProducts();
+            return ResponseEntity.ok(products);
     }
 
     @PutMapping("/update/{id}")
