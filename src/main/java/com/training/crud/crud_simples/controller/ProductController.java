@@ -24,20 +24,25 @@ public class ProductController {
     }
 
     @GetMapping("/findById/{id}")
-        public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id) {
-            ProductResponseDTO product = productService.getProductById(id);
-            return ResponseEntity.ok(product);
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id) {
+        ProductResponseDTO product = productService.getProductById(id);
+        return ResponseEntity.ok(product);
     }
 
-    @GetMapping
-        public ResponseEntity<java.util.List<ProductResponseDTO>> listAllProducts() {
-            java.util.List<ProductResponseDTO> products = productService.listAllProducts();
-            return ResponseEntity.ok(products);
+    @GetMapping("/listAll")
+    public ResponseEntity<java.util.List<ProductResponseDTO>> listAllProducts() {
+        java.util.List<ProductResponseDTO> products = productService.listAllProducts();
+        return ResponseEntity.ok(products);
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteProduct(@RequestParam Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
     @PutMapping("/update/{id}")
-        public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDTO productRequestDTO) {
-            ProductResponseDTO updatedProduct = productService.updateProduct(id, productRequestDTO);
-            return ResponseEntity.ok(updatedProduct);
+    public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable Long id, @RequestBody ProductRequestDTO productRequestDTO) {
+        ProductResponseDTO updatedProduct = productService.updateProduct(id, productRequestDTO);
+        return ResponseEntity.ok(updatedProduct);
     }
 }
