@@ -6,6 +6,8 @@ import com.training.crud.crud_simples.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/products")
@@ -30,8 +32,8 @@ public class ProductController {
     }
 
     @GetMapping("/listAll")
-    public ResponseEntity<java.util.List<ProductResponseDTO>> listAllProducts() {
-        java.util.List<ProductResponseDTO> products = productService.listAllProducts();
+    public ResponseEntity<List<ProductResponseDTO>> listAllProducts() {
+        List<ProductResponseDTO> products = productService.listAllProducts();
         return ResponseEntity.ok(products);
     }
 
